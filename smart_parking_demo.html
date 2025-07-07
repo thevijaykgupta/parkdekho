@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ParkDekho - Smart Parking</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+    body {
+      background: linear-gradient(135deg, #f0f2f5 60%, #e6fff5 100%);
+      min-height: 100vh;
+    }
+    .slot-badge {
+      display: inline-block;
+      background: linear-gradient(90deg, #10B981 0%, #2E8B57 100%);
+      color: #fff;
+      border-radius: 9999px;
+      padding: 28px 60px;
+      font-weight: 700;
+      font-size: 2.2em;
+      margin: 18px 28px;
+      box-shadow: 0 4px 24px rgba(16,185,129,0.18);
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      animation: pulse 2s infinite;
+    }
+    .slot-badge:hover {
+      background: #2E8B57;
+      color: #fff;
+      transform: scale(1.12);
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 4px 24px rgba(16,185,129,0.18);}
+      50% { box-shadow: 0 8px 32px 8px rgba(16,185,129,0.28);}
+    }
+    .glass {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+      border: 1.5px solid rgba(46,139,87,0.08);
+    }
+    .glass-input {
+      background: rgba(255,255,255,0.7);
+      border: 1.5px solid #2E8B57;
+      color: #111827;
+      border-radius: 0.5rem;
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .glass-input:focus {
+      border: 1.5px solid #10B981;
+    }
+    .section-title {
+      font-size: 2.2em;
+      font-weight: 700;
+      color: #10B981;
+      letter-spacing: 1px;
+      margin-bottom: 0.5em;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .section-title svg {
+      color: #10B981;
+      font-size: 1.2em;
+    }
+    .status-icon {
+      font-size: 2em;
+      color: #10B981;
+      margin-bottom: 0.2em;
+    }
+    .status-label {
+      color: #2E8B57;
+      font-weight: 600;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-green-100 to-gray-100 min-h-screen">
+  <!-- HERO SECTION -->
+  <div class="flex flex-col items-center justify-center min-h-[70vh]">
+    <h1 class="text-5xl md:text-6xl font-extrabold text-green-600 text-center drop-shadow-sm mb-2">ParkDekho</h1>
+    <div class="w-32 h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-full my-3"></div>
+    <p class="text-2xl text-green-700 font-medium text-center mb-8">Smart, Live, and Effortless Parking</p>
+    <nav class="flex flex-wrap justify-center gap-8 text-lg font-semibold mb-10">
+      <a href="#" class="text-green-600 border-b-2 border-transparent hover:border-green-500 transition">Home</a>
+      <a href="#" class="hover:text-green-600 transition">Login</a>
+      <a href="#" class="hover:text-green-600 transition">Signup</a>
+      <a href="#map-section" class="hover:text-green-600 transition">Map</a>
+      <a href="#booking-section" class="hover:text-green-600 transition">Book Slot</a>
+    </nav>
+    <!-- Welcome Block -->
+    <div class="bg-white rounded-2xl shadow-xl px-10 py-8 max-w-md w-full border-l-4 border-green-400" style="box-shadow: 0 8px 32px 0 rgba(16,185,129,0.10);">
+      <h2 class="text-2xl font-bold text-center mb-4 text-[#1e293b]">Welcome to ParkDekho</h2>
+      <div class="flex flex-col items-center gap-2 mb-6">
+        <div class="flex items-center gap-2">
+          <span class="inline-block w-4 h-4 rounded-full bg-green-400"></span>
+          <span class="text-[#16a34a] font-medium">5 slots available at ParkDekho East Lot</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="inline-block w-4 h-4 rounded-full bg-pink-400"></span>
+          <span class="text-[#be185d] font-medium">Nearest: 350m from your location</span>
+        </div>
+      </div>
+      <div class="flex justify-center">
+        <button class="px-8 py-3 rounded-lg text-white font-semibold text-lg shadow-md transition bg-gradient-to-r from-green-500 to-green-400 hover:from-green-600 hover:to-green-500 focus:outline-none">
+          Login to Book
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- STATUS CARDS -->
+  <main class="max-w-6xl mx-auto px-4 mt-10">
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass rounded-2xl p-8 flex flex-col items-center shadow-xl">
+        <span class="text-2xl text-[#2E8B57] mb-2">🅿️</span>
+        <span class="text-lg text-[#6B7280]">Available Slots</span>
+        <span class="text-3xl font-bold mt-2 text-[#10B981]">3</span>
+      </div>
+      <div class="glass rounded-2xl p-8 flex flex-col items-center shadow-xl">
+        <span class="text-2xl text-[#10B981] mb-2">📶</span>
+        <span class="text-lg text-[#6B7280]">Connection Status</span>
+        <span class="flex items-center gap-2 mt-2"><span class="animate-pulse bg-[#10B981] h-3 w-3 rounded-full"></span>Connected</span>
+      </div>
+      <div class="glass rounded-2xl p-8 flex flex-col items-center shadow-xl">
+        <span class="text-2xl text-[#F59E42] mb-2">🌐</span>
+        <span class="text-lg text-[#6B7280]">Device IP</span>
+        <span class="flex items-center gap-2 mt-2 text-[#F59E42]">192.168.1.123 <button onclick="navigator.clipboard.writeText('192.168.1.123')" class="ml-1 text-[#10B981] hover:text-[#2E8B57] transition">📋</button></span>
+      </div>
+    </div>
+    <!-- AVAILABLE SLOTS -->
+    <div class="glass mt-14 rounded-2xl p-12 flex flex-col items-center shadow-2xl">
+      <div class="section-title"><span>🚗</span>Available Slots</div>
+      <div class="flex flex-wrap gap-8 justify-center mt-2">
+        <span class="slot-badge">P1</span>
+        <span class="slot-badge">P2</span>
+        <span class="slot-badge">P5</span>
+      </div>
+    </div>
+    <!-- MAP IMAGE SECTION -->
+    <section id="map-section" class="mt-16">
+      <div class="section-title"><span>🗺️</span>Parking Locations Map</div>
+      <div class="flex items-center justify-end mb-3">
+        <input type="text" placeholder="Search location..." class="glass-input w-64"/>
+      </div>
+      <div class="w-full flex justify-center">
+        <a href="https://www.google.com/maps/search/parking+near+me" target="_blank" class="block w-full max-w-4xl rounded-2xl shadow-2xl border-2 border-[#2E8B57] overflow-hidden hover:shadow-green-200 transition">
+          <img src="maps.jpg" alt="Map Preview" class="w-full object-cover" style="min-height: 400px; max-height: 400px;">
+        </a>
+      </div>
+      <div class="text-[#2E8B57] text-sm mt-2 text-center">Click the map to open directions to the nearest parking location.</div>
+    </section>
+    <!-- ADVANCED BOOKING SECTION -->
+    <section id="booking-section" class="mt-16">
+      <div class="glass rounded-2xl p-10 max-w-xl mx-auto flex flex-col items-center">
+        <div class="section-title"><span>📝</span>Advanced Booking</div>
+        <form class="w-full flex flex-col gap-4" onsubmit="event.preventDefault(); alert('Booking requested!'); this.reset();">
+          <input type="text" class="glass-input" placeholder="Your Name" required>
+          <input type="email" class="glass-input" placeholder="Email" required>
+          <input type="text" class="glass-input" placeholder="Vehicle Number" required>
+          <select class="glass-input" required>
+            <option value="">Select Slot</option>
+            <option>P1</option>
+            <option>P2</option>
+            <option>P5</option>
+          </select>
+          <input type="datetime-local" class="glass-input" required>
+          <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-[#10B981] to-[#2E8B57] text-white font-bold text-lg shadow-lg hover:scale-105 transition">Book Now</button>
+        </form>
+      </div>
+    </section>
+    <!-- FEEDBACK SECTION -->
+    <section class="mt-20 mb-8">
+      <div class="glass rounded-2xl p-8 max-w-2xl mx-auto flex flex-col items-center">
+        <div class="section-title"><span>💬</span>Suggestions & Feedback</div>
+        <form onsubmit="event.preventDefault(); alert('Thank you for your feedback!'); this.reset();" class="w-full flex flex-col items-center gap-4">
+          <textarea placeholder="Your feedback or suggestions..." class="glass-input w-full min-h-[60px]"></textarea>
+          <button type="submit" class="px-8 py-3 rounded-xl bg-gradient-to-r from-[#10B981] to-[#2E8B57] text-white font-bold shadow-lg hover:scale-105 transition">Send Feedback</button>
+        </form>
+        <div class="mt-2 text-[#2E8B57] text-sm">We value your input to make ParkDekho even better!</div>
+      </div>
+    </section>
+    <!-- FOOTER -->
+    <footer class="w-full py-6 text-center text-[#2E8B57] text-sm mt-10">
+      <div class="flex flex-wrap justify-center gap-8 mb-2">
+        <a href="#" class="hover:text-[#10B981] border-b-2 border-transparent hover:border-[#10B981] transition">About</a>
+        <a href="#" class="hover:text-[#10B981] border-b-2 border-transparent hover:border-[#10B981] transition">Help</a>
+        <a href="#" class="hover:text-[#10B981] border-b-2 border-transparent hover:border-[#10B981] transition">Developer</a>
+        <a href="#" class="hover:text-[#10B981] border-b-2 border-transparent hover:border-[#10B981] transition">Contact</a>
+      </div>
+      <div class="mt-2">&copy; 2024 ParkDekho. Crafted with <span class="text-[#10B981]">♥</span> for smart cities.</div>
+    </footer>
+  </main>
+</body>
+</html> 
